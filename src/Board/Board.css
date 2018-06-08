@@ -1,0 +1,45 @@
+.Board{
+    padding: 50px;
+    width: 400px;
+    height: 400px;
+    display: inline-table;
+}
+
+.BoardRow{
+    display: inline-flex;
+}
+
+.BlackHouse{
+    height: 50px;
+    width: 50px;
+    background-color: brown
+}
+
+
+.WhiteHouse{
+    height: 50px;
+    width: 50px;
+    background-color: burlywood;
+
+    display: box;
+    box-pack: center;
+    box-align: center;
+}
+
+.WhitePiece{    
+    margin: 5px 5px;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    /* border: 3px solid black; */
+    border-radius: 100%;
+}
+
+.BlackPiece{    
+    margin: 5px 5px;
+    height: 40px;
+    width: 40px;
+    background-color: black;
+     /* border: 3px solid white; */
+    border-radius: 100%; 
+}
