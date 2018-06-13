@@ -50,18 +50,26 @@ class Board extends Component {
             }
         }
         else{
-            _state.movement.destiny = _position;
-            this.setState(_state,()=>{
-                console.log('Movement finalized', this.state);
-                this.movePiece();
-            });
+            if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
+                _state.movement.origin={};
+                this.setState(_state,()=>{
+                    console.log('Movement aborted');    
+                });
+                
+            }else{
+                _state.movement.destiny = _position;
+                this.setState(_state,()=>{
+                    console.log('Movement finalized', this.state);
+                    this.movePiece();
+                });
+            }
         }
     }
 
     movePiece = () =>{
         let _state = {...this.state};
         let _movement = new Movement;
-        if (_movement.validadeMovement(_state.pieces,_state.movement.origin, _state.movement.destiny)){
+        if (_movement.validadeMovement(_state.pieces,_state.movement.origin, _state.movement.destiny,_state.currentTurn)){
             _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = '';
             _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = _state.currentTurn==='BlackPiece' ? 'BlackPiece' : 'WhitePiece';
             _state.currentTurn = _state.currentTurn==='BlackPiece' ? 'WhitePiece' : 'BlackPiece';
@@ -77,9 +85,10 @@ class Board extends Component {
         return (
             <div>
                 <button onClick={this.setBoard}>Start Game</button>
+                <div><p>{this.state.currentTurn}'s turn</p></div>
                 <div className="Board">
                     <div className="BoardRow">
-                        <div onClick={()=> this.setMovement(0,0)} id="1A" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(0,0)} id="1A" className="BlackHouse MovementHouse">
                             <div className={this.state.pieces[0][0]}/>
                         </div>
                         <div id="1B" className="WhiteHouse">
