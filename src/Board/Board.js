@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './Board.css';
 import Position from '../Position/Position';
 import Movement from '../Movement/Movement';
+import crown from '../assets/crown.png';
 
 
 class Board extends Component {
@@ -87,6 +88,7 @@ class Board extends Component {
     render() {
         return (
             <div>
+                {/* <img src={crown}></img> */}
                 <button onClick={this.setBoard}>Start Game</button>
                 <div><p>{this.state.currentTurn}'s turn</p></div>
                 <div className="Board">
@@ -103,13 +105,13 @@ class Board extends Component {
                         <div id="1D" className="WhiteHouse">
                             <div className={this.state.pieces[0][3]}/>
                         </div>
-                        <div onClick={()=> this.setMovement(0,2)} id="1E" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(0,4)} id="1E" className="BlackHouse">
                             <div className={this.state.pieces[0][4]}/>
                         </div>
                         <div id="1F" className="WhiteHouse">
                             <div className={this.state.pieces[0][5]}/>
                         </div>
-                        <div onClick={()=> this.setMovement(0,3)} id="1G" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(0,6)} id="1G" className="BlackHouse">
                             <div className={this.state.pieces[0][6]}/>
                         </div>
                         <div id="1H" className="WhiteHouse">
