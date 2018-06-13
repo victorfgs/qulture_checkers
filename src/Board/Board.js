@@ -39,6 +39,9 @@ class Board extends Component {
     setMovement = (x,y) =>{
         let _state = {...this.state};
         let _position = new Position(x,y);
+        let _mov = new Movement();
+        _mov.listValidMovements(_state.pieces,_position,_state.currentTurn);
+        
         if (! (this.state.movement.origin instanceof Position)) {
             if (_state.pieces[x][y]!=_state.currentTurn) {
                 console.log('Cannot initiate movement. It\'s not your turn');
@@ -88,7 +91,7 @@ class Board extends Component {
                 <div><p>{this.state.currentTurn}'s turn</p></div>
                 <div className="Board">
                     <div className="BoardRow">
-                        <div onClick={()=> this.setMovement(0,0)} id="1A" className="BlackHouse MovementHouse">
+                        <div onClick={()=> this.setMovement(0,0)} id="1A" className="BlackHouse">
                             <div className={this.state.pieces[0][0]}/>
                         </div>
                         <div id="1B" className="WhiteHouse">
