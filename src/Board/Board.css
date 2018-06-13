@@ -48,6 +48,10 @@
     content: url("../assets/crown.png");
 }
 
-.BlackKing{
+.King{
     content: url("../assets/crown.png");
+}
+
+.RedBorder{
+    border: 3px solid red;
 }
