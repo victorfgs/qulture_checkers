@@ -60,6 +60,22 @@ class Board extends Component {
         _state.pieces[position.x][position.y].selected = _state.pieces[position.x][position.y].selected==='RedBorder' ? '' : 'RedBorder'
     }
 
+    removeHighlights = (_state)=>{
+        _state.pieces.forEach(row=>{
+            row.forEach(piece=>{
+                piece.selected='';
+            })
+        })
+    }
+
+    highlightTargets = (_state)=>{
+        let _movement = new Movement();
+        let validMovements= _movement.listValidMovements(_state.pieces,_state.movement.origin,_state.currentTurn);
+        validMovements.forEach(position=>{
+            this.highlightPosition(_state,position);
+        })
+    };
+
     isEndGame = ()=>{
         let count=0;
         this.state.pieces.forEach(row => {
@@ -105,6 +121,7 @@ class Board extends Component {
                 if (_mov.listValidMovements(_state.pieces,_position,_state.currentTurn).length>0){
                     _state.movement.origin = _position;
                         this.highlightPosition(_state,_position);
+                        this.highlightTargets(_state,_position);
                         this.setState(_state,()=>{
                         this.addMessage('Movement initiated');
                     });
@@ -146,6 +163,7 @@ class Board extends Component {
             }
             _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = originPiece;
             _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = destinyPiece;
+            this.removeHighlights(_state);
             if (this.isEndGame()) {
                 this.props.alert.show(`Game end! ${this.state.currentTurn} won!`);
             }
