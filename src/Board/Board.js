@@ -24,6 +24,13 @@ class Board extends Component {
     constructor(){
         super();
     }
+    
+    addMessage = (message) =>{
+        let _state = {...this.state};
+        _state.messages.push(message);
+        this.setState(_state);
+    }
+    
     setBoard = () =>{
         this.setState({
             pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
@@ -45,28 +52,27 @@ class Board extends Component {
         let _mov = new Movement();
         if (!(this.state.movement.origin instanceof Position)) {
             if (_state.pieces[x][y].color!=_state.currentTurn) {
-                console.log('Cannot initiate movement. It\'s not your turn');
+                this.addMessage('Cannot initiate movement. It\'s not your turn');
             }else{
                 if (_mov.listValidMovements(_state.pieces,_position,_state.currentTurn).length>0){
                     _state.movement.origin = _position;
                         this.setState(_state,()=>{
-                        console.log('Movement initiated', this.state);
+                        this.addMessage('Movement initiated');
                     });
                 }else{
-                    console.log('There are no possible movements for this piece');
+                    this.addMessage('There are no possible movements for this piece');
                 }
             }
-        }
-        else{
+        }else{
             if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
                 _state.movement.origin={};
-                this.setState(_state,()=>{
-                    console.log('Movement aborted');    
+                this.setState(_state,()=>{   
+                    this.addMessage('Movement aborted');
                 }); 
             }else{
                 _state.movement.destiny = _position;
                 this.setState(_state,()=>{
-                    console.log('Movement finalized', this.state);
+                    this.addMessage('Movement finalized');
                     this.movePiece();
                 });
             }
@@ -91,19 +97,20 @@ class Board extends Component {
             _state.movement.origin = {};
             _state.movement.destiny = {};
             this.setState(_state, ()=>{
-                console.log('movement done!',this.state);
             });
-        }else
-        {
-            console.log('INVALID MOVEMENT');
+        }else{
+            this.addMessage('Invalid Movement');
         }
     }
     render() {
+        const listItems = this.state.messages.map((_message) =>
+                                    <li>{_message}</li>);
         return (
             <div>
                 {/* <img src={crown}></img> */}
                 <button onClick={this.setBoard}>Start Game</button>
                 <div><p>{this.state.currentTurn}'s turn</p></div>
+                <div><ul>{listItems}</ul>,</div>
                 <div className="Board">
                     <div className="BoardRow">
                         <div onClick={()=> this.setMovement(0,0)} id="1A" className={"BlackHouse" + ' ' + this.state.pieces[0][0].selected}>
