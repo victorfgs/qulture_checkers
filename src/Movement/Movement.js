@@ -5,6 +5,18 @@ import Piece from '../Piece/Piece';
 class Movement {
 
 
+    getAllJumpMovements = (currentBoard,position1,validMovementsList)=>{
+        let jumpMovements = validMovementsList.filter(_position=>{
+            return (Math.abs(_position.x-position1.x)=== 2 && Math.abs(_position.y-position1.y)===2);
+        });
+        if (jumpMovements.length>0) {
+            return jumpMovements;
+        }else{
+            return validMovementsList;
+        }
+    }
+    
+    
     removeInvalidVerticalMovements = (currentBoard,position1,validMovementsList) =>{
         let allowedPositions = [];
         let originPiece = new Piece();
@@ -21,7 +33,8 @@ class Movement {
                 allowedPositions.push(_position);
             }
         });
-        return allowedPositions;
+        
+        return (this.getAllJumpMovements(currentBoard,position1,allowedPositions));
     }
 
 

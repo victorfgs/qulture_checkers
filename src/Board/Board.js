@@ -132,6 +132,7 @@ class Board extends Component {
         }else{
             if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
                 _state.movement.origin={};
+                this.removeHighlights(_state);
                 this.setState(_state,()=>{   
                     this.addMessage('Movement aborted');
                 }); 
@@ -158,12 +159,16 @@ class Board extends Component {
             _movement.killOponent(_state.pieces,_state.movement.origin,_state.movement.destiny,_state.currentTurn);
             destinyPiece = _state.pieces[_state.movement.origin.x][_state.movement.origin.y];
             this.highlightPosition(_state,_state.movement.origin);
-            if (_state.movement.destiny.y===0 || _state.movement.destiny.y===7) {
+            console.log(_state.movement.destiny)
+            if (_state.movement.destiny.x===0 || _state.movement.destiny.x===7) {
                 destinyPiece.direction='both';
             }
             _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = originPiece;
             _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = destinyPiece;
             this.removeHighlights(_state);
+            if (_movement.listValidMovements(_state.pieces,_state.movement.destiny,_state.currentTurn).filter) {
+                
+            }
             if (this.isEndGame()) {
                 this.props.alert.show(`Game end! ${this.state.currentTurn} won!`);
             }
@@ -183,7 +188,7 @@ class Board extends Component {
             <div className="GameContainer">
                 <div className="GamePanel">
                     <button className="button" onClick={this.setBoard}>Start Game</button>
-                    <button onClick={()=> {this.setState(this.state2)}}>teste</button>
+                    {/* <button onClick={()=> {this.setState(this.state2)}}>teste</button> */}
                     <div>
                         <div className={"Turns " + this.state.turnsPanel.White}><p>White Pieces Turn</p></div>
                         <div className={"Turns " + this.state.turnsPanel.Black}><p>Black Pieces Turn</p></div>
@@ -301,7 +306,7 @@ class Board extends Component {
                         <div id="5B" className="WhiteHouse">
                             <div className={this.state.pieces[4][1].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(4,2)} id="5C" className={"BlackHouse" + ' ' + this.state.pieces[4][3].selected}>
+                        <div onClick={()=> this.setMovement(4,2)} id="5C" className={"BlackHouse" + ' ' + this.state.pieces[4][2].selected}>
                             <div className={this.state.pieces[4][2].color}/>
                         </div>
                         <div id="5D" className="WhiteHouse">
