@@ -135,6 +135,9 @@ class Board extends Component {
             let destinyPiece = new Piece();
             _movement.killOponent(_state.pieces,_state.movement.origin,_state.movement.destiny,_state.currentTurn);
             destinyPiece = _state.pieces[_state.movement.origin.x][_state.movement.origin.y];
+            if (_state.movement.destiny.y===0 || _state.movement.destiny.y===7) {
+                destinyPiece.direction='both';
+            }
             _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = originPiece;
             _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = destinyPiece;
             if (this.isEndGame()) {
