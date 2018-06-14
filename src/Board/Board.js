@@ -4,16 +4,16 @@ import Position from '../Position/Position';
 import Movement from '../Movement/Movement';
 import crown from '../assets/crown.png';
 import Piece from '../Piece/Piece';
-
+import { withAlert } from "react-alert";
 
 class Board extends Component {
     state = {
-        pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+        pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
                 [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
-                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
+                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
                 [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
         currentTurn:'WhitePiece',
@@ -22,6 +22,23 @@ class Board extends Component {
         messages:[]
     }
     
+    state2 = {
+        pieces:[[{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}]
+            ],
+        currentTurn:'WhitePiece',
+        turnsPanel:{White:'ActiveTurn',Black:''},
+        movement:{origin:{},destiny:{}},
+        messages:[]
+    }
+
     constructor(){
         super();
     }
@@ -39,6 +56,17 @@ class Board extends Component {
         return _state;
     }
 
+    isEndGame = ()=>{
+        let count=0;
+        this.state.pieces.forEach(row => {
+            row.forEach(piece=>{
+                if (piece.color!==this.state.currentTurn && piece.color!=='') {
+                    count++;
+                }
+            })
+        });
+        return count===0 ? true : false;
+    }
 
     addMessage = (message) =>{
         let _state = {...this.state};
@@ -48,14 +76,14 @@ class Board extends Component {
     
     setBoard = () =>{
         this.setState({
-            pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
-                    [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
-                    [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
-                    [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
-                    [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
-                    [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
-                    [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
-                    [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
+            pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+            [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
+            [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+            [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+            [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+            [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
+            [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
+            [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
             currentTurn:'WhitePiece',
             turnsPanel:{White:'ActiveTurn',Black:''},
             movement:{origin:{},destiny:{}}
@@ -109,7 +137,9 @@ class Board extends Component {
             destinyPiece = _state.pieces[_state.movement.origin.x][_state.movement.origin.y];
             _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = originPiece;
             _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = destinyPiece;
-            // _state.currentTurn = _state.currentTurn==='BlackPiece' ? 'WhitePiece' : 'BlackPiece';
+            if (this.isEndGame()) {
+                this.props.alert.show(`Game end! ${this.state.currentTurn} won!`);
+            }
             this.changeTurn(_state,_state.currentTurn);
             _state.movement.origin = {};
             _state.movement.destiny = {};
@@ -126,6 +156,7 @@ class Board extends Component {
             <div className="GameContainer">
                 <div className="GamePanel">
                     <button className="button" onClick={this.setBoard}>Start Game</button>
+                    <button onClick={()=> {this.setState(this.state2)}}>teste</button>
                     <div>
                         <div className={"Turns " + this.state.turnsPanel.White}><p>White Pieces Turn</p></div>
                         <div className={"Turns " + this.state.turnsPanel.Black}><p>Black Pieces Turn</p></div>
@@ -349,5 +380,5 @@ class Board extends Component {
     }
 }
 
-export default Board;
+export default withAlert(Board);
 
