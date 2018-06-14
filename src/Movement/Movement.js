@@ -40,7 +40,7 @@ class Movement {
         let bounds = this.getNeighborhood(currentBoard,position1,currentTurn);//[bound1,bound2,bound3,bound4];
         let possibleMovements = [];
         bounds.forEach(bound=>{
-            if (currentBoard[bound.x][bound.y].color=='') {
+            if (currentBoard[bound.x][bound.y].color==='') {
                 possibleMovements.push(bound);
             }else if(currentBoard[bound.x][bound.y].color!=='' && currentBoard[bound.x][bound.y].color!==currentTurn){
                 let boundsTarget = this.getNeighborhood(currentBoard,bound,currentTurn);

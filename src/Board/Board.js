@@ -8,14 +8,14 @@ import { withAlert } from "react-alert";
 
 class Board extends Component {
     state = {
-        pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
-                [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
-                [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+        pieces:[[{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'}],
+                [{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
-                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
-                [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
-                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
+                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'}],
+                [{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'}]],
         currentTurn:'WhitePiece',
         turnsPanel:{White:'ActiveTurn',Black:''},
         movement:{origin:{},destiny:{}},
@@ -25,8 +25,8 @@ class Board extends Component {
     state2 = {
         pieces:[[{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
-                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
-                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
@@ -56,6 +56,10 @@ class Board extends Component {
         return _state;
     }
 
+    highlightPosition =(_state,position)=>{
+        _state.pieces[position.x][position.y].selected = _state.pieces[position.x][position.y].selected==='RedBorder' ? '' : 'RedBorder'
+    }
+
     isEndGame = ()=>{
         let count=0;
         this.state.pieces.forEach(row => {
@@ -76,14 +80,14 @@ class Board extends Component {
     
     setBoard = () =>{
         this.setState({
-            pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
-            [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
-            [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+            pieces:[[{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+            [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'}],
+            [{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
             [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
             [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
-            [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
-            [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
-            [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
+            [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'}],
+            [{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
+            [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'',direction:'upwards'}]],
             currentTurn:'WhitePiece',
             turnsPanel:{White:'ActiveTurn',Black:''},
             movement:{origin:{},destiny:{}}
@@ -100,6 +104,7 @@ class Board extends Component {
             }else{
                 if (_mov.listValidMovements(_state.pieces,_position,_state.currentTurn).length>0){
                     _state.movement.origin = _position;
+                        this.highlightPosition(_state,_position);
                         this.setState(_state,()=>{
                         this.addMessage('Movement initiated');
                     });
@@ -135,6 +140,7 @@ class Board extends Component {
             let destinyPiece = new Piece();
             _movement.killOponent(_state.pieces,_state.movement.origin,_state.movement.destiny,_state.currentTurn);
             destinyPiece = _state.pieces[_state.movement.origin.x][_state.movement.origin.y];
+            this.highlightPosition(_state,_state.movement.origin);
             if (_state.movement.destiny.y===0 || _state.movement.destiny.y===7) {
                 destinyPiece.direction='both';
             }
@@ -173,19 +179,19 @@ class Board extends Component {
                         <div id="1B" className="WhiteHouse">
                             <div className={this.state.pieces[0][1].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(0,2)} id="1C" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(0,2)} id="1C" className={"BlackHouse" + ' ' + this.state.pieces[0][2].selected}>
                             <div className={this.state.pieces[0][2].color}/>
                         </div>
                         <div id="1D" className="WhiteHouse">
                             <div className={this.state.pieces[0][3].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(0,4)} id="1E" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(0,4)} id="1E" className={"BlackHouse" + ' ' + this.state.pieces[0][4].selected}>
                             <div className={this.state.pieces[0][4].color}/>
                         </div>
                         <div id="1F" className="WhiteHouse">
                             <div className={this.state.pieces[0][5].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(0,6)} id="1G" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(0,6)} id="1G" className={"BlackHouse" + ' ' + this.state.pieces[0][6].selected}>
                             <div className={this.state.pieces[0][6].color}/>
                         </div>
                         <div id="1H" className="WhiteHouse">
@@ -196,48 +202,48 @@ class Board extends Component {
                         <div id="2A" className="WhiteHouse">
                             <div className={this.state.pieces[1][0].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(1,1)} id="2B" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(1,1)} id="2B" className={"BlackHouse" + ' ' + this.state.pieces[1][1].selected}>
                             <div className={this.state.pieces[1][1].color}/>
                         </div>
                         <div id="2C" className="WhiteHouse">
                             <div className={this.state.pieces[1][2].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(1,3)} id="2D" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(1,3)} id="2D" className={"BlackHouse" + ' ' + this.state.pieces[1][3].selected}>
                             <div className={this.state.pieces[1][3].color}/>
                         </div>
                         <div id="2E" className="WhiteHouse">
                             <div className={this.state.pieces[1][4].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(1,5)} id="2F" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(1,5)} id="2F" className={"BlackHouse" + ' ' + this.state.pieces[1][5].selected}>
                             <div className={this.state.pieces[1][5].color}/>
                         </div>
                         <div id="2G" className="WhiteHouse">
                             <div className={this.state.pieces[1][6].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(1,7)} id="2H" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(1,7)} id="2H" className={"BlackHouse" + ' ' + this.state.pieces[1][7].selected}>
                             <div className={this.state.pieces[1][7].color}/>
                         </div>
                     </div>
                     <div className="BoardRow">
-                        <div onClick={()=> this.setMovement(2,0)} id="3A" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(2,0)} id="3A" className={"BlackHouse" + ' ' + this.state.pieces[2][0].selected}>
                             <div className={this.state.pieces[2][0].color}/>
                         </div>
                         <div id="3B" className="WhiteHouse">
                             <div className={this.state.pieces[2][1].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(2,2)} id="3C" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(2,2)} id="3C" className={"BlackHouse" + ' ' + this.state.pieces[2][2].selected}>
                             <div className={this.state.pieces[2][2].color}/>
                         </div>
                         <div id="3D" className="WhiteHouse">
                             <div className={this.state.pieces[2][3].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(2,4)} id="3E" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(2,4)} id="3E" className={"BlackHouse" + ' ' + this.state.pieces[2][4].selected}>
                             <div className={this.state.pieces[2][4].color}/>
                         </div>
                         <div id="3F" className="WhiteHouse">
                             <div className={this.state.pieces[2][5].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(2,6)} id="3G" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(2,6)} id="3G" className={"BlackHouse" + ' ' + this.state.pieces[2][6].selected}>
                             <div  className={this.state.pieces[2][6].color}/>
                         </div>
                         <div id="3H" className="WhiteHouse">
@@ -248,48 +254,48 @@ class Board extends Component {
                         <div id="4A" className="WhiteHouse">
                             <div className={this.state.pieces[3][0].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(3,1)} id="4B" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(3,1)} id="4B" className={"BlackHouse" + ' ' + this.state.pieces[3][1].selected}>
                             <div className={this.state.pieces[3][1].color}/>
                         </div>
                         <div id="4C" className="WhiteHouse">
                             <div className={this.state.pieces[3][2].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(3,3)} id="4D" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(3,3)} id="4D" className={"BlackHouse" + ' ' + this.state.pieces[3][3].selected}>
                             <div className={this.state.pieces[3][3].color}/>
                         </div>
                         <div id="4E" className="WhiteHouse">
                             <div className={this.state.pieces[3][4].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(3,5)} id="4F" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(3,5)} id="4F" className={"BlackHouse" + ' ' + this.state.pieces[3][5].selected}>
                             <div className={this.state.pieces[3][5].color}/>
                         </div>
                         <div id="4G" className="WhiteHouse">
                             <div className={this.state.pieces[3][6].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(3,7)} id="4H" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(3,7)} id="4H" className={"BlackHouse" + ' ' + this.state.pieces[3][7].selected}>
                             <div className={this.state.pieces[3][7].color}/>
                         </div>
                     </div>
                     <div className="BoardRow">
-                        <div onClick={()=> this.setMovement(4,0)} id="5A" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(4,0)} id="5A" className={"BlackHouse" + ' ' + this.state.pieces[4][0].selected}>
                             <div className={this.state.pieces[4][0].color}/>
                         </div>
                         <div id="5B" className="WhiteHouse">
                             <div className={this.state.pieces[4][1].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(4,2)} id="5C" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(4,2)} id="5C" className={"BlackHouse" + ' ' + this.state.pieces[4][3].selected}>
                             <div className={this.state.pieces[4][2].color}/>
                         </div>
                         <div id="5D" className="WhiteHouse">
                             <div className={this.state.pieces[4][3].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(4,4)} id="5E" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(4,4)} id="5E" className={"BlackHouse" + ' ' + this.state.pieces[4][4].selected}>
                             <div className={this.state.pieces[4][4].color}/>
                         </div>
                         <div id="5F" className="WhiteHouse">
                             <div className={this.state.pieces[4][5].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(4,6)}  id="5G" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(4,6)}  id="5G" className={"BlackHouse" + ' ' + this.state.pieces[4][6].selected}>
                             <div className={this.state.pieces[4][6].color}/>
                         </div>
                         <div id="5H" className="WhiteHouse">
@@ -300,48 +306,48 @@ class Board extends Component {
                         <div id="6A" className="WhiteHouse">
                             <div className={this.state.pieces[5][0].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(5,1)}  id="6B" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(5,1)}  id="6B" className={"BlackHouse" + ' ' + this.state.pieces[5][1].selected}>
                             <div className={this.state.pieces[5][1].color}/>
                         </div>
                         <div id="6C" className="WhiteHouse">
                             <div className={this.state.pieces[5][2].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(5,3)} id="6D" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(5,3)} id="6D" className={"BlackHouse" + ' ' + this.state.pieces[5][3].selected}>
                             <div className={this.state.pieces[5][3].color}/>
                         </div>
                         <div id="6E" className="WhiteHouse">
                             <div className={this.state.pieces[5][4].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(5,5)} id="6F" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(5,5)} id="6F" className={"BlackHouse" + ' ' + this.state.pieces[5][5].selected}>
                             <div className={this.state.pieces[5][5].color}/>
                         </div>
                         <div id="6G" className="WhiteHouse">
                             <div className={this.state.pieces[5][6].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(5,7)} id="6H" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(5,7)} id="6H" className={"BlackHouse" + ' ' + this.state.pieces[5][7].selected}>
                             <div className={this.state.pieces[5][7].color}/>
                         </div>
                     </div>
                     <div className="BoardRow">
-                        <div onClick={()=> this.setMovement(6,0)} id="7A" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(6,0)} id="7A" className={"BlackHouse" + ' ' + this.state.pieces[6][0].selected}>
                             <div className={this.state.pieces[6][0].color}/>
                         </div>
                         <div id="7B" className="WhiteHouse">
                             <div className={this.state.pieces[6][1].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(6,2)} id="7C" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(6,2)} id="7C" className={"BlackHouse" + ' ' + this.state.pieces[6][2].selected}>
                             <div className={this.state.pieces[6][2].color}/>
                         </div>
                         <div id="7D" className="WhiteHouse">
                             <div className={this.state.pieces[6][3].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(6,4)} id="7E" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(6,4)} id="7E" className={"BlackHouse" + ' ' + this.state.pieces[6][4].selected}>
                             <div className={this.state.pieces[6][4].color}/>
                         </div>
                         <div id="7F" className="WhiteHouse">
                             <div className={this.state.pieces[6][5].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(6,6)} id="7G" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(6,6)} id="7G" className={"BlackHouse" + ' ' + this.state.pieces[6][6].selected}>
                             <div className={this.state.pieces[6][6].color}/>
                         </div>
                         <div id="7H" className="WhiteHouse">
@@ -352,25 +358,25 @@ class Board extends Component {
                         <div id="8A" className="WhiteHouse">
                             <div className={this.state.pieces[7][0].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(7,1)} id="8B" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(7,1)} id="8B" className={"BlackHouse" + ' ' + this.state.pieces[7][1].selected}>
                             <div className={this.state.pieces[7][1].color}/>
                         </div>
                         <div id="8C" className="WhiteHouse">
                             <div className={this.state.pieces[7][2].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(7,3)} id="8D" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(7,3)} id="8D" className={"BlackHouse" + ' ' + this.state.pieces[7][3].selected}>
                             <div className={this.state.pieces[7][3].color}/>
                         </div>
                         <div id="8E" className="WhiteHouse">
                             <div className={this.state.pieces[7][4].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(7,5)} id="7F" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(7,5)} id="7F" className={"BlackHouse" + ' ' + this.state.pieces[7][5].selected}>
                             <div className={this.state.pieces[7][5].color}/>
                         </div>
                         <div id="7G" className="WhiteHouse">
                             <div className={this.state.pieces[7][6].color}/>
                         </div>
-                        <div onClick={()=> this.setMovement(7,7)} id="7H" className="BlackHouse">
+                        <div onClick={()=> this.setMovement(7,7)} id="7H" className={"BlackHouse" + ' ' + this.state.pieces[7][7].selected}>
                             <div className={this.state.pieces[7][7].color}/>
                         </div>
                     </div>
