@@ -17,6 +17,7 @@ class Board extends Component {
                 [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
                 [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
         currentTurn:'WhitePiece',
+        turnsPanel:{White:'ActiveTurn',Black:''},
         movement:{origin:{},destiny:{}},
         messages:[]
     }
@@ -25,6 +26,20 @@ class Board extends Component {
         super();
     }
     
+    changeTurn = (_state,currentTurn) =>{
+        if (_state.currentTurn==='BlackPiece') {
+            _state.currentTurn ='WhitePiece'    
+            _state.turnsPanel.White ='ActiveTurn'   
+            _state.turnsPanel.Black =''   
+        }else{
+            _state.currentTurn ='BlackPiece'
+            _state.turnsPanel.Black ='ActiveTurn'   
+            _state.turnsPanel.White =''   
+        }
+        return _state;
+    }
+
+
     addMessage = (message) =>{
         let _state = {...this.state};
         _state.messages.unshift(message);
@@ -42,6 +57,7 @@ class Board extends Component {
                     [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
                     [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
             currentTurn:'WhitePiece',
+            turnsPanel:{White:'ActiveTurn',Black:''},
             movement:{origin:{},destiny:{}}
         });
     }
@@ -93,7 +109,8 @@ class Board extends Component {
             destinyPiece = _state.pieces[_state.movement.origin.x][_state.movement.origin.y];
             _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = originPiece;
             _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = destinyPiece;
-            _state.currentTurn = _state.currentTurn==='BlackPiece' ? 'WhitePiece' : 'BlackPiece';
+            // _state.currentTurn = _state.currentTurn==='BlackPiece' ? 'WhitePiece' : 'BlackPiece';
+            this.changeTurn(_state,_state.currentTurn);
             _state.movement.origin = {};
             _state.movement.destiny = {};
             this.setState(_state, ()=>{
@@ -109,7 +126,10 @@ class Board extends Component {
             <div className="GameContainer">
                 <div className="GamePanel">
                     <button className="button" onClick={this.setBoard}>Start Game</button>
-                    <div><p>{this.state.currentTurn}'s turn</p></div>
+                    <div>
+                        <div className={"Turns " + this.state.turnsPanel.White}><p>White Pieces Turn</p></div>
+                        <div className={"Turns " + this.state.turnsPanel.Black}><p>Black Pieces Turn</p></div>
+                    </div>
                 </div>
                 <div className="Board">
                     <div className="BoardRow">

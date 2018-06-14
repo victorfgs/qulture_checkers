@@ -89,12 +89,33 @@
     margin-bottom: 5px;
 }
 
-
-.GamePanel{
+.Turns{
+    width: 180px;
+    height: 300;
     display:flex; 
     flex-direction: column; 
     justify-content: center; 
-    align-items: center
+    align-items: center;
+    border: 3px solid #404f54;
+    border-radius:5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.ActiveTurn{
+    background-color: #4CAF50;
+}
+
+.GamePanel{
+    width: 200px;
+    height: 300px;
+    display:flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    border: 3px solid #404f54;
+    border-radius:10px;
+    padding: 5px;
 }
 
 .button {
@@ -106,4 +127,5 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 4px;
 }
