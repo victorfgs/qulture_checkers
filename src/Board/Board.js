@@ -27,7 +27,7 @@ class Board extends Component {
     
     addMessage = (message) =>{
         let _state = {...this.state};
-        _state.messages.push(message);
+        _state.messages.unshift(message);
         this.setState(_state);
     }
     
@@ -104,13 +104,13 @@ class Board extends Component {
     }
     render() {
         const listItems = this.state.messages.map((_message) =>
-                                    <li>{_message}</li>);
+                                    <li className="MessageItem"><div className="MessageInfo">{_message}</div></li>);
         return (
-            <div>
-                {/* <img src={crown}></img> */}
-                <button onClick={this.setBoard}>Start Game</button>
-                <div><p>{this.state.currentTurn}'s turn</p></div>
-                <div><ul>{listItems}</ul>,</div>
+            <div className="GameContainer">
+                <div className="GamePanel">
+                    <button className="button" onClick={this.setBoard}>Start Game</button>
+                    <div><p>{this.state.currentTurn}'s turn</p></div>
+                </div>
                 <div className="Board">
                     <div className="BoardRow">
                         <div onClick={()=> this.setMovement(0,0)} id="1A" className={"BlackHouse" + ' ' + this.state.pieces[0][0].selected}>
@@ -320,6 +320,9 @@ class Board extends Component {
                             <div className={this.state.pieces[7][7].color}/>
                         </div>
                     </div>
+                </div>
+                <div className="MessageContainer">
+                    <ul className="MessageList">{listItems}</ul>
                 </div>
             </div>
         )
