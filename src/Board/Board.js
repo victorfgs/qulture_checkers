@@ -3,20 +3,22 @@ import classes from './Board.css';
 import Position from '../Position/Position';
 import Movement from '../Movement/Movement';
 import crown from '../assets/crown.png';
+import Piece from '../Piece/Piece';
 
 
 class Board extends Component {
     state = {
-        pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},''],
-                ['',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
-                [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},''],
-                ['','','','','','','',''],
-                ['','','','','','','',''],
-                ['',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
-                [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},''],
-                ['',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
+        pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
+                [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
+                [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
+                [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
         currentTurn:'WhitePiece',
-        movement:{origin:{},destiny:{}}
+        movement:{origin:{},destiny:{}},
+        messages:[]
     }
     
     constructor(){
@@ -24,14 +26,14 @@ class Board extends Component {
     }
     setBoard = () =>{
         this.setState({
-            pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},''],
-                    ['',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
-                    [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},'',{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},''],
-                    ['','','','','','','',''],
-                    ['','','','','','','',''],
-                    ['',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
-                    [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},''],
-                    ['',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},'',{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
+            pieces:[[{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+                    [{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'}],
+                    [{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''},{color:'BlackPiece',type:'King',selected:'RedBorder',direction:'downwards'},{color:'',type:'',selected:'',direction:''}],
+                    [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                    [{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''},{color:'',type:'',selected:'',direction:''}],
+                    [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}],
+                    [{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''}],
+                    [{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'},{color:'',type:'',selected:'',direction:''},{color:'WhitePiece',type:'King',selected:'RedBorder',direction:'upwards'}]],
             currentTurn:'WhitePiece',
             movement:{origin:{},destiny:{}}
         });
@@ -41,16 +43,18 @@ class Board extends Component {
         let _state = {...this.state};
         let _position = new Position(x,y);
         let _mov = new Movement();
-        _mov.listValidMovements(_state.pieces,_position,_state.currentTurn);
-        
-        if (! (this.state.movement.origin instanceof Position)) {
-            if (_state.pieces[x][y]!=_state.currentTurn) {
+        if (!(this.state.movement.origin instanceof Position)) {
+            if (_state.pieces[x][y].color!=_state.currentTurn) {
                 console.log('Cannot initiate movement. It\'s not your turn');
             }else{
-                _state.movement.origin = _position;
-                this.setState(_state,()=>{
-                    console.log('Movement initiated', this.state);
-                });
+                if (_mov.listValidMovements(_state.pieces,_position,_state.currentTurn).length>0){
+                    _state.movement.origin = _position;
+                        this.setState(_state,()=>{
+                        console.log('Movement initiated', this.state);
+                    });
+                }else{
+                    console.log('There are no possible movements for this piece');
+                }
             }
         }
         else{
@@ -58,8 +62,7 @@ class Board extends Component {
                 _state.movement.origin={};
                 this.setState(_state,()=>{
                     console.log('Movement aborted');    
-                });
-                
+                }); 
             }else{
                 _state.movement.destiny = _position;
                 this.setState(_state,()=>{
@@ -72,18 +75,28 @@ class Board extends Component {
 
     movePiece = () =>{
         let _state = {...this.state};
-        let _movement = new Movement;
-        if (_movement.validadeMovement(_state.pieces,_state.movement.origin, _state.movement.destiny,_state.currentTurn)){
-            _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = '';
-            _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = _state.currentTurn==='BlackPiece' ? 'BlackPiece' : 'WhitePiece';
+        let _movement = new Movement();
+        let possibleMovements = _movement.listValidMovements(_state.pieces,_state.movement.origin,_state.currentTurn);
+        let _destinyPosition = possibleMovements.find(_position=>{
+            return _position.x==_state.movement.destiny.x && _position.y==_state.movement.destiny.y;
+        });
+        if (_destinyPosition) {
+            let originPiece = new Piece();
+            let destinyPiece = new Piece();
+            _movement.killOponent(_state.pieces,_state.movement.origin,_state.movement.destiny,_state.currentTurn);
+            destinyPiece = _state.pieces[_state.movement.origin.x][_state.movement.origin.y];
+            _state.pieces[_state.movement.origin.x][_state.movement.origin.y] = originPiece;
+            _state.pieces[_state.movement.destiny.x][_state.movement.destiny.y] = destinyPiece;
             _state.currentTurn = _state.currentTurn==='BlackPiece' ? 'WhitePiece' : 'BlackPiece';
             _state.movement.origin = {};
             _state.movement.destiny = {};
             this.setState(_state, ()=>{
                 console.log('movement done!',this.state);
             });
+        }else
+        {
+            console.log('INVALID MOVEMENT');
         }
-        
     }
     render() {
         return (

@@ -3,17 +3,20 @@ import React, { Component } from 'react';
 
 
 class Piece extends Component {
-    constructor(_color,
-                _type,
-                _selected,
-                _direction){
+    constructor(){
         super();
-        this.color = _color
-        this.type = _type
-        this.selected = _selected
-        this.direction = _direction
+        this.color = '';
+        this.type = '';
+        this.selected = '';
+        this.direction = '';
     }
 
+    setFromState = (piece) =>{
+        this.color = piece.color;
+        this.type = piece.type;
+        this.selected = piece.selected;
+        this.direction = piece.direction;
+    }
 
 }
 
