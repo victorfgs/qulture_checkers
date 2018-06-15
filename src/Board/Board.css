@@ -1,0 +1,131 @@
+.Board{
+    padding: 50px;
+    width: 400px;
+    height: 400px;
+    display: inline-table;
+}
+
+.BoardRow{
+    display: inline-flex;
+}
+
+.BlackHouse{
+    height: 50px;
+    width: 50px;
+    background-color: brown
+}
+
+
+.WhiteHouse{
+    height: 50px;
+    width: 50px;
+    background-color: burlywood;
+
+    display: box;
+    box-pack: center;
+    box-align: center;
+}
+
+.WhitePiece{    
+    margin: 5px 5px;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    /* border: 3px solid black; */
+    border-radius: 100%;
+}
+
+.BlackPiece{    
+    margin: 5px 5px;
+    height: 40px;
+    width: 40px;
+    background-color: black;
+     /* border: 3px solid white; */
+    border-radius: 100%; 
+}
+
+.WhiteKing{
+    content: url("../assets/crown.png");
+}
+
+.King{
+    content: url("../assets/crown.png");
+}
+
+.RedBorder{
+    border: 3px solid red;
+}
+
+.GameContainer{
+    display:flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center
+}
+
+.MessageContainer{
+    height: 400px;
+    padding: 50px;
+    width: 300px;
+    overflow:auto;
+}
+
+.MessageList{
+    vertical-align: bottom;
+}
+
+.MessageItem{
+    display: inline-block;
+    text-align: center;
+}
+
+.MessageInfo {
+    padding: 10px;
+    width: 250px;
+    background-color: #404f54;;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 5px;
+}
+
+.Turns{
+    width: 180px;
+    height: 300;
+    display:flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    border: 3px solid #404f54;
+    border-radius:5px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.ActiveTurn{
+    background-color: #4CAF50;
+}
+
+.GamePanel{
+    width: 200px;
+    height: 300px;
+    display:flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    border: 3px solid #404f54;
+    border-radius:10px;
+    padding: 5px;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+}
