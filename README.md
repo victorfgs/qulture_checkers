@@ -1,7 +1,7 @@
 # qulture_checkers
 [Victorfgs'](https://github.com/victorfgs) checkers challenge
 
-
+You can find a live demo of this challenge on [Qulture_checkers](https://victorfgs.github.io/qulture_checkers/)
 ### Build With
 + [create-react-app](https://www.npmjs.com/package/create-react-app)
 + [react](https://www.npmjs.com/package/react)
