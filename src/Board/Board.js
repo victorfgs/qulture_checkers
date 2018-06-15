@@ -60,17 +60,23 @@ class Board extends Component {
             }
             
         }//gets all positions in the current turn
-        let originPosition = null;
+        let originPositions = [];
         //analize if one of those positions has a jump possibility
         positions.forEach(_position=>{
             let validMovements = _mov.listValidMovements(this.state.pieces,_position,this.state.currentTurn);
             validMovements.forEach(_targetPosition=>{
                 if (_mov.isJump(_position,_targetPosition)) {
-                    originPosition = _position;
+                    originPositions.push(_position);
                 }
             });
         });
-        return originPosition;
+
+        originPositions.forEach(_position=>{
+            console.log('POSSICAAAAO', _position);
+            this.highlightPosition(this.state,_position);
+            this.highlightTargets(this.state,_position);
+        })
+        return originPositions;
         
     }
     
@@ -88,7 +94,9 @@ class Board extends Component {
     }
 
     highlightPosition =(_state,position)=>{
-        _state.pieces[position.x][position.y].selected = 'RedBorder';
+        if (_state.pieces[position.x][position.y].selected==='') {
+            _state.pieces[position.x][position.y].selected = 'RedBorder';    
+        }
     }
 
     removeHighlights = (_state)=>{
@@ -99,9 +107,9 @@ class Board extends Component {
         })
     }
 
-    highlightTargets = (_state)=>{
+    highlightTargets = (_state, position)=>{
         let _movement = new Movement();
-        let validMovements= _movement.listValidMovements(_state.pieces,_state.movement.origin,_state.currentTurn);
+        let validMovements= _movement.listValidMovements(_state.pieces,position,_state.currentTurn);
         validMovements.forEach(position=>{
             this.highlightPosition(_state,position);
         })
@@ -141,16 +149,40 @@ class Board extends Component {
         });
     }
 
+
+    validateTurn = (position) =>{
+        if (this.state.pieces[position.x][position.y].color===''){
+            return false;
+        } else if (this.state.pieces[position.x][position.y].color!==this.state.currentTurn){
+            //empty board cell
+            this.addMessage("It's not your turn!")
+            return false;
+        } else{
+            return true;
+        }
+    }
     setMovementState =(position,movementType)=>{
         let _state = {...this.state};
         if (movementType==='origin') {
-            _state.movement.origin = position;    
-            this.highlightPosition(_state,position);
-            this.highlightTargets(_state,position);
+            if (position) {
+                _state.movement.origin = position ? position : {};    
+                this.highlightPosition(_state,position);
+                this.highlightTargets(_state,position);    
+            } else {
+                _state.movement.origin = {};
+            }
+            
         } else {
-            _state.movement.destiny = position;    
+            _state.movement.destiny = position ? position : {};    
         }
         this.setState(_state);
+    }
+
+    abortMovement = (position) =>{
+        if(this.state.movement.origin.x===position.x && this.state.movement.origin.y===position.y){
+           return true; console.log('return true caraio')
+        }
+        return false;
     }
 
     setMovement = (x,y) =>{
@@ -158,56 +190,32 @@ class Board extends Component {
         let _position = new Position(x,y);
         let _mov = new Movement();
         let forceOrigin = this.forceJump();
-        console.log(forceOrigin);
-        if(forceOrigin){
-            this.addMessage('There is a mandatory movement in this turn. Origin piece will be selected automatically');
-            this.setMovementState(forceOrigin,'origin');
-            if ((this.state.movement.origin instanceof Position)) {
-                if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
-                    _state.movement.origin={};
-                    this.removeHighlights(_state);
-                    this.setState(_state,()=>{   
-                        this.addMessage('Movement aborted');
-                    }); 
-                }else{
-                    _state.movement.destiny = _position;
-                    this.setState(_state,()=>{
-                        this.addMessage('Movement finalized');
-                        this.movePiece();
-                    });
+        if (forceOrigin.length>0) {
+            if (!(this.state.movement.origin instanceof Position)) {
+                if (forceOrigin.filter(__position=> __position.x===_position.x && __position.y===_position.y).length===1) {
+                    this.setMovementState(_position,'origin');                        
+                } else {
+                    this.addMessage('There is a mandatory movement in this turn. Select one of the highlighted pieces.');
                 }
+            } else {
+                this.setMovementState(_position,'destiny');
+                this.movePiece();
             }
         } else {
-            this.addMessage('There are no mandatory movements for this turn');
-            
             if (!(this.state.movement.origin instanceof Position)) {
-                if (_state.pieces[x][y].color!=_state.currentTurn) {
-                    this.addMessage('Cannot initiate movement. It\'s not your turn');
-                }else{
+                if (this.validateTurn(_position)){
                     if (_mov.listValidMovements(_state.pieces,_position,_state.currentTurn).length>0){
-                        _state.movement.origin = _position;
-                            this.highlightPosition(_state,_position);
-                            this.highlightTargets(_state,_position);
-                            this.setState(_state,()=>{
-                            this.addMessage('Movement initiated');
-                        });
-                    }else{
-                        this.addMessage('There are no possible movements for this piece');
+                        this.setMovementState(_position,'origin');                        
                     }
-                }} else {
-                    if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
-                        _state.movement.origin={};
-                        this.removeHighlights(_state);
-                        this.setState(_state,()=>{   
-                            this.addMessage('Movement aborted');
-                        }); 
-                    }else{
-                        _state.movement.destiny = _position;
-                        this.setState(_state,()=>{
-                            this.addMessage('Movement finalized');
-                            this.movePiece();
-                        });
-                    }
+                }
+            } else {
+                if (!this.abortMovement(_position)) {
+                    this.setMovementState(_position,'destiny');
+                    this.movePiece();
+                } else{
+                    this.setMovementState(null,'origin');
+                    this.removeHighlights(this.state);
+                }
             }
         }
     }
