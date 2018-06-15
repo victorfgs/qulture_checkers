@@ -72,7 +72,6 @@ class Board extends Component {
         });
 
         originPositions.forEach(_position=>{
-            console.log('POSSICAAAAO', _position);
             this.highlightPosition(this.state,_position);
             this.highlightTargets(this.state,_position);
         })

@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chai": "^4.1.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "gh-pages": "^1.2.0",
     "jest": "^23.1.0",
     "jest-cli": "^23.1.0",
     "prop-types": "15.6.1",
@@ -19,6 +23,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "docker-run": "docker-compose up -d --build",
-    "docker-stop": "docker-compose stop"
-  }
+    "docker-stop": "docker-compose stop",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "https://victorfgs.github.io/qulture_checkers"
 }
