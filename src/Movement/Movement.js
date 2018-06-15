@@ -5,6 +5,15 @@ import Piece from '../Piece/Piece';
 class Movement {
 
 
+    isJump = (originPosition, destinyPosition) =>{
+        if (Math.abs(originPosition.x-destinyPosition.x)=== 2 
+                && Math.abs(originPosition.y-destinyPosition.y)===2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     getAllJumpMovements = (currentBoard,position1,validMovementsList)=>{
         let jumpMovements = validMovementsList.filter(_position=>{
             return (Math.abs(_position.x-position1.x)=== 2 && Math.abs(_position.y-position1.y)===2);
@@ -13,6 +22,17 @@ class Movement {
             return jumpMovements;
         }else{
             return validMovementsList;
+        }
+    }
+
+    hasJumpMovements = (currentBoard,position1,validMovementsList)=>{
+        let jumpMovements = validMovementsList.filter(_position=>{
+            return (Math.abs(_position.x-position1.x)=== 2 && Math.abs(_position.y-position1.y)===2);
+        });
+        if (jumpMovements.length>0) {
+            return true;
+        }else{
+            return false;
         }
     }
     
@@ -72,7 +92,9 @@ class Movement {
         if(Math.abs(position2.x-position1.x)=== 2 && Math.abs(position2.y-position1.y)===2){ 
             let enemyPosition = new Position((position1.x+position2.x)/2,(position1.y+position2.y)/2);
                 currentBoard[enemyPosition.x][enemyPosition.y]= new Piece();
+                return true;
         }
+        return false;
     }
 }
 

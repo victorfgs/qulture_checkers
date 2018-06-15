@@ -19,7 +19,8 @@ class Board extends Component {
         currentTurn:'WhitePiece',
         turnsPanel:{White:'ActiveTurn',Black:''},
         movement:{origin:{},destiny:{}},
-        messages:[]
+        messages:[],
+        forceJump:false
     }
     
     state2 = {
@@ -36,11 +37,41 @@ class Board extends Component {
         currentTurn:'WhitePiece',
         turnsPanel:{White:'ActiveTurn',Black:''},
         movement:{origin:{},destiny:{}},
-        messages:[]
+        messages:[],
+        forceJump:false
     }
 
     constructor(){
         super();
+    }
+
+
+    
+    forceJump = ()=>{
+        let pieces = this.state.pieces;
+        let currentTurn = this.state.currentTurn;
+        let positions = [];
+        let _mov = new Movement();
+        for (let rowIndex = 0; rowIndex < 8; rowIndex++) {
+            for (let columnIndex = 0; columnIndex < 8; columnIndex++) {
+                if (pieces[rowIndex][columnIndex].color==currentTurn) {
+                    positions.push(new Position(rowIndex,columnIndex));
+                }
+            }
+            
+        }//gets all positions in the current turn
+        let originPosition = null;
+        //analize if one of those positions has a jump possibility
+        positions.forEach(_position=>{
+            let validMovements = _mov.listValidMovements(this.state.pieces,_position,this.state.currentTurn);
+            validMovements.forEach(_targetPosition=>{
+                if (_mov.isJump(_position,_targetPosition)) {
+                    originPosition = _position;
+                }
+            });
+        });
+        return originPosition;
+        
     }
     
     changeTurn = (_state,currentTurn) =>{
@@ -57,7 +88,7 @@ class Board extends Component {
     }
 
     highlightPosition =(_state,position)=>{
-        _state.pieces[position.x][position.y].selected = _state.pieces[position.x][position.y].selected==='RedBorder' ? '' : 'RedBorder'
+        _state.pieces[position.x][position.y].selected = 'RedBorder';
     }
 
     removeHighlights = (_state)=>{
@@ -110,38 +141,73 @@ class Board extends Component {
         });
     }
 
+    setMovementState =(position,movementType)=>{
+        let _state = {...this.state};
+        if (movementType==='origin') {
+            _state.movement.origin = position;    
+            this.highlightPosition(_state,position);
+            this.highlightTargets(_state,position);
+        } else {
+            _state.movement.destiny = position;    
+        }
+        this.setState(_state);
+    }
+
     setMovement = (x,y) =>{
         let _state = {...this.state};
         let _position = new Position(x,y);
         let _mov = new Movement();
-        if (!(this.state.movement.origin instanceof Position)) {
-            if (_state.pieces[x][y].color!=_state.currentTurn) {
-                this.addMessage('Cannot initiate movement. It\'s not your turn');
-            }else{
-                if (_mov.listValidMovements(_state.pieces,_position,_state.currentTurn).length>0){
-                    _state.movement.origin = _position;
-                        this.highlightPosition(_state,_position);
-                        this.highlightTargets(_state,_position);
-                        this.setState(_state,()=>{
-                        this.addMessage('Movement initiated');
-                    });
+        let forceOrigin = this.forceJump();
+        console.log(forceOrigin);
+        if(forceOrigin){
+            this.addMessage('There is a mandatory movement in this turn. Origin piece will be selected automatically');
+            this.setMovementState(forceOrigin,'origin');
+            if ((this.state.movement.origin instanceof Position)) {
+                if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
+                    _state.movement.origin={};
+                    this.removeHighlights(_state);
+                    this.setState(_state,()=>{   
+                        this.addMessage('Movement aborted');
+                    }); 
                 }else{
-                    this.addMessage('There are no possible movements for this piece');
+                    _state.movement.destiny = _position;
+                    this.setState(_state,()=>{
+                        this.addMessage('Movement finalized');
+                        this.movePiece();
+                    });
                 }
             }
-        }else{
-            if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
-                _state.movement.origin={};
-                this.removeHighlights(_state);
-                this.setState(_state,()=>{   
-                    this.addMessage('Movement aborted');
-                }); 
-            }else{
-                _state.movement.destiny = _position;
-                this.setState(_state,()=>{
-                    this.addMessage('Movement finalized');
-                    this.movePiece();
-                });
+        } else {
+            this.addMessage('There are no mandatory movements for this turn');
+            
+            if (!(this.state.movement.origin instanceof Position)) {
+                if (_state.pieces[x][y].color!=_state.currentTurn) {
+                    this.addMessage('Cannot initiate movement. It\'s not your turn');
+                }else{
+                    if (_mov.listValidMovements(_state.pieces,_position,_state.currentTurn).length>0){
+                        _state.movement.origin = _position;
+                            this.highlightPosition(_state,_position);
+                            this.highlightTargets(_state,_position);
+                            this.setState(_state,()=>{
+                            this.addMessage('Movement initiated');
+                        });
+                    }else{
+                        this.addMessage('There are no possible movements for this piece');
+                    }
+                }} else {
+                    if (_state.movement.origin.x===_position.x && _state.movement.origin.y===_position.y) {
+                        _state.movement.origin={};
+                        this.removeHighlights(_state);
+                        this.setState(_state,()=>{   
+                            this.addMessage('Movement aborted');
+                        }); 
+                    }else{
+                        _state.movement.destiny = _position;
+                        this.setState(_state,()=>{
+                            this.addMessage('Movement finalized');
+                            this.movePiece();
+                        });
+                    }
             }
         }
     }
@@ -156,10 +222,9 @@ class Board extends Component {
         if (_destinyPosition) {
             let originPiece = new Piece();
             let destinyPiece = new Piece();
-            _movement.killOponent(_state.pieces,_state.movement.origin,_state.movement.destiny,_state.currentTurn);
+            let jumped = _movement.killOponent(_state.pieces,_state.movement.origin,_state.movement.destiny,_state.currentTurn);
             destinyPiece = _state.pieces[_state.movement.origin.x][_state.movement.origin.y];
             this.highlightPosition(_state,_state.movement.origin);
-            console.log(_state.movement.destiny)
             if (_state.movement.destiny.x===0 || _state.movement.destiny.x===7) {
                 destinyPiece.direction='both';
             }
@@ -172,9 +237,16 @@ class Board extends Component {
             if (this.isEndGame()) {
                 this.props.alert.show(`Game end! ${this.state.currentTurn} won!`);
             }
-            this.changeTurn(_state,_state.currentTurn);
-            _state.movement.origin = {};
-            _state.movement.destiny = {};
+            let hasJumps =  _movement.hasJumpMovements(_state.pieces,new Position(_state.movement.destiny.x,_state.movement.destiny.y),_movement.listValidMovements(_state.pieces,
+                                new Position(_state.movement.destiny.x,_state.movement.destiny.y)
+                                ,_state.currentTurn));
+            if (hasJumps && jumped) {
+                this.setMovementState(new Position(_state.movement.destiny.x,_state.movement.destiny.y),'origin');
+            } else{
+                this.changeTurn(_state,_state.currentTurn);
+                _state.movement.origin = {};
+                _state.movement.destiny = {}; 
+            }
             this.setState(_state, ()=>{
             });
         }else{
