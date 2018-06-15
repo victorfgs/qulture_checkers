@@ -7,12 +7,14 @@
 
 .BoardRow{
     display: inline-flex;
+    margin: 2px 0px
 }
 
 .BlackHouse{
     height: 50px;
     width: 50px;
-    background-color: brown
+    background-color: brown;
+    padding: 3px 3px;
 }
 
 
@@ -20,10 +22,11 @@
     height: 50px;
     width: 50px;
     background-color: burlywood;
-
+    padding: 3px 3px;
     display: box;
     box-pack: center;
     box-align: center;
+
 }
 
 .WhitePiece{    
@@ -31,7 +34,6 @@
     height: 40px;
     width: 40px;
     background-color: white;
-    /* border: 3px solid black; */
     border-radius: 100%;
 }
 
@@ -40,7 +42,6 @@
     height: 40px;
     width: 40px;
     background-color: black;
-     /* border: 3px solid white; */
     border-radius: 100%; 
 }
 
@@ -53,7 +54,7 @@
 }
 
 .RedBorder{
-    border: 3px solid red;
+    border: 2px solid red;
 }
 
 .GameContainer{
