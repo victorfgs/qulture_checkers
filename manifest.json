@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Qulture Checkers",
+  "name": "Qulture Rocks checkers chalenge",
   "icons": [
     {
       "src": "favicon.ico",
