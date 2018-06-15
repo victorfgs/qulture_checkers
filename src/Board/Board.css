@@ -7,14 +7,13 @@
 
 .BoardRow{
     display: inline-flex;
-    margin: 2px 0px
+    
 }
 
 .BlackHouse{
     height: 50px;
     width: 50px;
     background-color: brown;
-    padding: 3px 3px;
 }
 
 
@@ -22,7 +21,6 @@
     height: 50px;
     width: 50px;
     background-color: burlywood;
-    padding: 3px 3px;
     display: box;
     box-pack: center;
     box-align: center;
